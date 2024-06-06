@@ -11,12 +11,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 
 app.get('/users', (req, res) => {
-    res.cookie('myCookie', 'hello', {
-        sameSite: 'None', // или 'Strict' в зависимости от требований
-        secure: true,    // установите true, если ваш сайт работает по HTTPS
-        domain: '.netlify.app' // укажите ваш домен здесь
-    });
+    res.setHeader('Set-Cookie', ['myCookie=hello; SameSite=None; Secure; domain=yamatotest.netlify.app']);
     res.send('respond with a resource');
+});
+
+app.get('/', (req, res) => {
+    res.send('hello');
 });
 
 app.use('/.netlify/functions/express', require('../../routes/index'));
