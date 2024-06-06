@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 
 app.get('/users', (req, res) => {
-    res.setHeader('Set-Cookie', ['myCookie=hello; Path=/; SameSite=None; Secure; domain=yamatotest.netlify.app']);
+    res.appendHeader('Set-Cookie', ['myCookie=hello; Path=/; SameSite=None; Secure; domain=yamatotest.netlify.app']);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send('respond with a resource');
 });
